@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MerchantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,10 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
 Route::get('dashboard', [AuthController::class, 'dashboard']); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('merchant', [MerchantController::class, 'index'])->name('view_merchant');
+Route::get('merchant/add', [MerchantController::class, 'addMerchant'])->name('add_merchant');
+Route::post('merchant/add/post', [MerchantController::class, 'createMerchant'])->name('add_merchant.post');
 
 // Route::get('/', function () {
 //     return view('index.admin');

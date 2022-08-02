@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Laravel - ItSolutionStuff.com</title>
+    <title>Stock Management</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
@@ -54,7 +54,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand" href="#">Laravel</a>
+            <a class="navbar-brand" href='/dashboard'>Laravel</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,6 +69,12 @@
                         <a class="nav-link" href="{{ route('register') }}">Register</a>
                     </li>
                     @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('view_merchant') }}">Merchant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}">Worker</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                     </li>
