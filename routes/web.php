@@ -22,9 +22,13 @@ Route::post('post-registration', [AuthController::class, 'postRegistration'])->n
 Route::get('dashboard', [AuthController::class, 'dashboard']); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('merchant', [MerchantController::class, 'index'])->name('view_merchant');
+Route::get('merchant', [MerchantController::class, 'viewMerchant'])->name('view_merchant');
 Route::get('merchant/add', [MerchantController::class, 'addMerchant'])->name('add_merchant');
 Route::post('merchant/add/post', [MerchantController::class, 'createMerchant'])->name('add_merchant.post');
+Route::delete('merchant/delete_post/{id}', [MerchantController::class, 'destroy'])->name('del_mer.destroy');
+Route::get('merchant/single_mer/{id}', [MerchantController::class, 'show'])->name('show_mer');
+Route::get('merchant/edit_mer/{id}', [MerchantController::class, 'edit'])->name('edit_mer');
+Route::put('merchant/edit_mer/{id}', [MerchantController::class, 'update'])->name('update_mer.put');
 
 // Route::get('/', function () {
 //     return view('index.admin');

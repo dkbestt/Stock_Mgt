@@ -22,16 +22,25 @@
             </tr>
         </thead>
         <tbody>
+
+            @foreach($merchant as $mer)
             <tr>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th>{{ $loop->iteration }}</th>
+                <td>{{ $mer->name }}</td>
+                <td>{{ $mer->email }}</td>
+                <td>{{ $mer->mobile_no }}</td>
                 <td>
-                    <a href="#"><button class="btn btn-info">Edit</button></a>
-                    <a href="#"><button class="btn btn-danger">Delete</button></a>
+                    <form action="{{ route('del_mer.destroy',$mer->id) }}" method="POST">
+                        <a href="{{ route('edit_mer', $mer->id) }}" class="btn btn-info">Edit</a>
+                        <a href="{{ route('show_mer', $mer->id) }}" class="btn btn-secondary">Show</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
+
+            @endforeach
         </tbody>
     </table>
 </div>
