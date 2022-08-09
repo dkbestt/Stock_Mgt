@@ -2,20 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
@@ -30,13 +21,19 @@ Route::get('merchant/single_mer/{id}', [MerchantController::class, 'show'])->nam
 Route::get('merchant/edit_mer/{id}', [MerchantController::class, 'edit'])->name('edit_mer');
 Route::put('merchant/edit_mer/{id}', [MerchantController::class, 'update'])->name('update_mer.put');
 
-// Route::get('/', function () {
-//     return view('index.admin');
-// });
+Route::get('worker', [WorkerController::class, 'viewWorker'])->name('view_worker');
+Route::get('worker/add', [WorkerController::class, 'addWorker'])->name('add_worker');
+Route::post('worker/add/post', [WorkerController::class, 'createWorker'])->name('add_worker.post');
+Route::delete('worker/delete_post/{id}', [WorkerController::class, 'destroy'])->name('del_worker.destroy');
+Route::get('worker/single_worker/{id}', [WorkerController::class, 'show'])->name('show_worker');
+Route::get('worker/edit_worker/{id}', [WorkerController::class, 'edit'])->name('edit_worker');
+Route::put('worker/edit_worker/{id}', [WorkerController::class, 'update'])->name('update_worker.put');
 
-// Route::get('/insert_merchant', function () {
-//     return view('pages.merchant.add_mer');
-// });
-// Route::get('/view_merchant', function () {
-//     return view('pages.merchant.view_mer');
+Route::get('product', [ProductController::class, 'viewProduct'])->name('view_product');
+Route::get('product/add', [ProductController::class, 'addProduct'])->name('add_product');
+Route::post('product/add/post', [ProductController::class, 'createProduct'])->name('add_product.post');
+
+
+// Route::get('login', function () {
+//     return view('auth.login');
 // });

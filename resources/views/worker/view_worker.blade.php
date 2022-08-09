@@ -5,10 +5,10 @@
 <div class="container">
     <div class="row my-2">
         <div class="col-md-10">
-            <h3>Merchant List</h3>
+            <h3>Worker List</h3>
         </div>
         <div class="col-md-2">
-            <a href="{{route('add_merchant')}}"><button class="btn btn-primary">Add merchant</button></a>
+            <a href="{{route('add_worker')}}"><button class="btn btn-primary">Add worker</button></a>
         </div>
     </div>
     <table class="table">
@@ -23,16 +23,16 @@
         </thead>
         <tbody>
 
-            @foreach($merchant as $mer)
+            @foreach($worker as $wor)
             <tr>
                 <th>{{ $loop->iteration }}</th>
-                <td>{{ $mer->name }}</td>
-                <td>{{ $mer->email }}</td>
-                <td>{{ $mer->mobile_no }}</td>
+                <td>{{ $wor->name }}</td>
+                <td>{{ $wor->email }}</td>
+                <td>{{ $wor->mobile_no }}</td>
                 <td>
-                    <form action="{{ route('del_mer.destroy',$mer->id) }}" method="POST">
-                        <a href="{{ route('edit_mer', $mer->id) }}" class="btn btn-info">Edit</a>
-                        <a href="{{ route('show_mer', $mer->id) }}" class="btn btn-secondary">Show</a>
+                    <form action="{{ route('del_worker.destroy',$wor->id) }}" method="POST">
+                        <a href="{{ route('edit_worker', $wor->id) }}" class="btn btn-info">Edit</a>
+                        <a href="{{ route('show_worker', $wor->id) }}" class="btn btn-secondary">Show</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>

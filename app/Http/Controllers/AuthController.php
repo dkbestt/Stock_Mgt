@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merchant;
 use App\Models\User;
+use App\Models\Worker;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,9 +30,14 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+        $merchant = Merchant::get()->count();
+        $worker = Worker::get()->count();
+        $success = "You have Successfully loggedin";
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                ->withSuccess('You have Successfully loggedin');
+            // return redirect()->intended('dashboard')
+            //     ->withSuccess('You have Successfully loggedin');
+            // return view('dashboard', compact('merchant'))->with('success', 'You have Successfully loggedin');
+            return view('dashboard', compact('merchant', 'worker', 'success'));
         }
 
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
@@ -73,6 +80,6 @@ class AuthController extends Controller
         // Session::flush();
         Auth::logout();
 
-        return Redirect('login');
+        return Redirect("/");
     }
 }

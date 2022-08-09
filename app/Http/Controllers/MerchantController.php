@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Merchant;
+use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class MerchantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function viewMerchant()
     {
         $merchant = Merchant::get();
@@ -26,11 +22,6 @@ class MerchantController extends Controller
         return view('merchant.add_mer');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function createMerchant(Request $request)
     {
         $data = $request->all();
@@ -51,48 +42,20 @@ class MerchantController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Merchant  $merchant
-     * @return \Illuminate\Http\Response
-     */
     public function show(Merchant $merchant, $id)
     {
         $single_mer = Merchant::where('id', $id)->first();
-        return view('merchant.show_mer')->with('single_mer', $single_mer);
+        $all_items = Product::with('merchant')->where('m_id', $id)->get();
+        return view('merchant.show_mer', compact('single_mer','all_items'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Merchant  $merchant
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Merchant $merchant, $id)
     {
         $edit_mer = Merchant::where('id', $id)->first();
         return view("merchant.edit_mer")->with('edit_mer', $edit_mer);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Merchant  $merchant
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -112,12 +75,7 @@ class MerchantController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Merchant  $merchant
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Merchant $merchant, $id)
     {
         $delete_mer = Merchant::where('id', $id)->delete();

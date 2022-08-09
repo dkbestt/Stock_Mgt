@@ -73,7 +73,10 @@
                         <a class="nav-link" href="{{ route('view_merchant') }}">Merchant</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Worker</a>
+                        <a class="nav-link" href="{{ route('view_worker') }}">Worker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('view_product') }}">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Logout</a>

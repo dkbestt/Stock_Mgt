@@ -17,6 +17,32 @@
             </div>
         </div>
     </div>
+
+    <h1>All products stock</h1>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">product Name</th>
+                    <th scope="col">price</th>
+                    <th scope="col">qty</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($all_items as $product)
+                <tr>
+                    <th>{{ $loop->iteration }}</th>
+                    <td>{{ $product->product_name }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->qty }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
+
+
 
 @endsection
